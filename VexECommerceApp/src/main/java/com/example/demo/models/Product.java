@@ -34,7 +34,7 @@ public class Product {
 		this.discount = discount;
 		this.description = description;
 	}
-	public long getId() {
+	public long getProductID() {
 		return productID;
 	}
 	public String getName() {

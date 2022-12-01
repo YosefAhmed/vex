@@ -64,3 +64,17 @@ $(window).on('load', function () {
   });
 
 })(jQuery);
+
+function removeItemFromCart(cart, id){
+	console.log(JSON.stringify(cart));
+	console.log(id);	
+  $.ajax({url: "/remove_item?productID="+id,type:'put', data: JSON.stringify(cart),
+		  headers : {"Content-Type": "application/json"}
+		  }).done(function(){
+				console.log("before reloading");
+				window.location.reload();
+				console.log("after reloading");
+			});
+	
+ 
+}

@@ -25,11 +25,11 @@ public class Order {
 	private long orderID;
 	
 	@OneToOne
-	@JoinColumn(name = "cartID")
+	@JoinColumn(name = "cartID", nullable = false)
 	private Cart cart;
 
 	@OneToOne
-	@JoinColumn(name = "customerID")
+	@JoinColumn(name = "customerID", nullable = false)
 	private Customer customer;
 
 //	private long cartID;

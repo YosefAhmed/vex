@@ -11,24 +11,34 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.example.demo.models.Product;
 import com.example.demo.services.ProductService;
 
-@RestController
+@Controller
 public class ProductController {
 
 	@Autowired
 	private ProductService productService;
 	
 	@GetMapping("/all_products")
-	public List<Product> getAllProducts(){
-		return productService.getAllProducts();
+	public ModelAndView getAllProducts(){
+		List<Product> allProducts = productService.getAllProducts();
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("allProducts", allProducts);
+		mv.setViewName("products");
+		return mv;
 	}
 	
 	@GetMapping("/product")
-	public Optional<Product> getProduct(@RequestParam long productID){
-		return productService.getProductByID(productID);
+	public ModelAndView getProduct(@RequestParam long productID){
+		Optional<Product> product = productService.getProductByID(productID);
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("product", product);
+		mv.setViewName("product-details");
+	
+		return mv;
 	}
 	
 	@PostMapping("/save_product")

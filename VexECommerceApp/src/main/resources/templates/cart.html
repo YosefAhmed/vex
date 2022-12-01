@@ -26,7 +26,7 @@
   <link rel="stylesheet" href="plugins/bootstrap/bootstrap.min.css ">
   <link rel="stylesheet" href="plugins/themefisher-font/themefisher-font.min.css ">
   <link rel="stylesheet" href="plugins/slick/slick.min.css ">
-  
+  <link href='https://css.gg/remove.css' rel='stylesheet'>
   <!-- Stylesheets -->
   <link href="css/style.css" rel="stylesheet">
   
@@ -112,15 +112,15 @@
   <div class="container">
     <div class="row">
       <div class="col-12 text-center mb-5">
-        <h1 class="font-weight-bold">All latest Smart Watch</h1>
+        <h1 class="font-weight-bold">Cart([[${mycart.listOfProducts.size()}]])</h1>
       </div>
       <table>
-      	<tr th:each="item:${allProducts}">
+      	<tr th:each="item:${mycart.listOfProducts}">
 			    <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
 	        		<div class="block">
-	          			<div class="gallery-overlay">
-	            			<a th:href="@{'/product?productID=' + ${item.getId()}}" class="gallery-popup">
-	              				<i class="tf-ion-plus-round"></i>
+	          			<div>
+	            			<a th:onclick="removeItemFromCart([[${mycart}]], [[${item.getProductID}]])" modelAttribute="mycart">
+	              				<i class="gg-remove"></i>
 	            			</a>
 	          			</div>
 	          			<img class="img-fluid" src="images/showcase/showcase-1.png" alt="Apple Watch">

@@ -1,6 +1,7 @@
 package com.example.demo.models;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -39,7 +40,7 @@ public class Cart {
 		this.totalAmount = totalAmount;
 		this.listOfProducts = new ArrayList<Product>();
 	}
-	public long getId() {
+	public long getCartID() {
 		return cartID;
 	}
 	public List<Product> getListOfProducts() {
@@ -57,6 +58,14 @@ public class Cart {
 	public void removeFromCart(Product product) {
 		listOfProducts.remove(product);
 		calculateAmount(-product.getFinalPrice());
+	}
+	
+	public Product getProductByID(long id) {
+		for (Product product : listOfProducts) {
+			if(product.getProductID() == id)
+				return product;
+		}
+		return null;
 	}
 	
 	private void calculateAmount(float productPrice) {

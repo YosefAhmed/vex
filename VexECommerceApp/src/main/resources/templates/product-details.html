@@ -43,7 +43,7 @@
 <header class="navigation sticky-top bg-white">
   <div class="container">
     <nav class="navbar navbar-expand-lg navbar-light">
-      <a class="navbar-brand" href="index.html"> <img src="images/logo.png" alt="Vex" width="100px">
+      <a class="navbar-brand" href="home"> <img src="images/logo.png" alt="Vex" width="100px">
       </a>
       <button class="navbar-toggler p-0 border-0" type="button" data-toggle="collapse" data-target="#navigation"
         aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
@@ -54,11 +54,11 @@
         <ul class="navbar-nav ml-auto mr-n0 mr-md-n3">
 
           <li class="nav-item">
-            <a class="nav-link" href="index.html">Home</a>
+            <a class="nav-link" href="home">Home</a>
           </li>
 
           <li class="nav-item">
-            <a class="nav-link" href="products.html">Products</a>
+            <a class="nav-link" href="all_products">Products</a>
           </li>
 
           <li class="nav-item">
@@ -77,8 +77,8 @@
                 <a class="dropdown-item dropdown-toggle" href="#!" id="dropdown0301" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Sub Menu 01</a>
       
                 <ul class="dropdown-menu" aria-labelledby="dropdown0301">
-                  <li><a class="dropdown-item" href="index.html">Submenu 11</a></li>
-                  <li><a class="dropdown-item" href="index.html">Submenu 12</a></li>
+                  <li><a class="dropdown-item" href="home">Submenu 11</a></li>
+                  <li><a class="dropdown-item" href="home">Submenu 12</a></li>
                 </ul>
               </li>
               
@@ -86,15 +86,15 @@
                 <a class="dropdown-item dropdown-toggle" href="#!" id="dropdown0301" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Sub Menu 02</a>
       
                 <ul class="dropdown-menu" aria-labelledby="dropdown0301">
-                  <li><a class="dropdown-item" href="index.html">Submenu 21</a></li>
-                  <li><a class="dropdown-item" href="index.html">Submenu 22</a></li>
+                  <li><a class="dropdown-item" href="home">Submenu 21</a></li>
+                  <li><a class="dropdown-item" href="home">Submenu 22</a></li>
                 </ul>
               </li>
             </ul>
           </li>
 
           <li class="nav-item">
-            <a class="nav-link" href="index.html#testimonial">Review</a>
+            <a class="nav-link" href="home#testimonial">Review</a>
           </li>
 
           <li class="nav-item">
@@ -110,7 +110,7 @@
 
 <section class="section">
   <div class="container">
-    <div class="row">
+    <div class="row" >
       <div class="col-md-5 mb-4 mb-md-0">
 
         <div class="product-image-slider">
@@ -134,11 +134,11 @@
         </div>
       </div>
       <div class="col-lg-6 col-md-7 offset-lg-1">
-        <h1 class="mb-4">Apple Watch</h1>
+        <h1 class="mb-4" th:text="${product.get().name}"></h1>
         <p><strong>Colors: </strong>Black, White, Gray</p>
         <p><strong>Sizes: </strong>Small, Medium, Large</p>
-        <p class="price py-4">$25.00
-          <s class="price">$30.00</s>
+        <p class="price py-4">$[[${product.get().getFinalPrice()}]]
+          <s class="price">$[[${product.get().getPrice()}]]</s>
         </p>
         <button class="snipcart-add-item btn btn-main mb-5" data-item-id="apple-watch__25.00"
           data-item-name="Apple Watch" data-item-image="images/showcase/showcase-1.png" data-item-price="25.00"
@@ -147,8 +147,7 @@
           data-item-custom2-options="Small|Medium|Large">Add to Cart
         </button>
         <div class="content">
-          <p>Apple Watch is a line of smartwatches produced by Apple Inc. It incorporates fitness tracking and
-            health-oriented capabilities with integration with iOS and other Apple products and services.</p>
+          <p>[[${product.get().getDescription()}]]</p>
         </div>
       </div>
     </div>
@@ -169,7 +168,7 @@
     <div class="row">
       <div class="col-md-12">
         <div class="block">
-          <a href="index.html" class="mb-4 d-inline-block"> <img src="images/logo.png" alt="Vex" width="100px"> </a>
+          <a href="home" class="mb-4 d-inline-block"> <img src="images/logo.png" alt="Vex" width="100px"> </a>
           <ul class="list-inline footer-menu">
             
             <li class="list-inline-item">

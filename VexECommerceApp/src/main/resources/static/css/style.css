@@ -510,13 +510,13 @@ footer p.copyright-text a:hover {
 }
 
 p.price {
-  font-size: 30px;
+  font-size: 35px;
   font-family: "Droid Serif", serif;
 }
 
 s.price {
   color: red;
-  font-size: 25px;
+  font-size: 30px;
   font-family: "Droid Serif", serif;
 }
 
@@ -661,3 +661,35 @@ textarea.form-control {
   color: #f9a743;
 }
 /*# sourceMappingURL=style.css.map */
+
+.gg-remove {
+    box-sizing: border-box;
+    position: relative;
+    display: block;
+    transform: scale(var(--ggs,1));
+    width: 30px;
+    height: 30px;
+    border-color: transparent;
+    background: #f9a743;
+    cursor: pointer
+}
+.gg-remove:hover{
+	opacity: 0.7
+}
+.gg-remove:active{
+	background: #e48107;
+    opacity: 1
+}
+.gg-remove::before {
+    content: "";
+    display: block;
+    box-sizing: border-box;
+    position: absolute;
+    width: 15px;
+    height: 4px;
+    background: white;
+    top: 12px;
+    left: 5px;
+    cursor: pointer
+    
+}

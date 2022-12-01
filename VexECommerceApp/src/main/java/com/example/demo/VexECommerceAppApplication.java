@@ -15,7 +15,7 @@ public class VexECommerceAppApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(VexECommerceAppApplication.class, args);
-
+		
 	}
 
 }
