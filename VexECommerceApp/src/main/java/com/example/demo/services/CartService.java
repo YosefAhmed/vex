@@ -14,12 +14,16 @@ public class CartService {
 	@Autowired
 	private CartRepo cartRepo;
 	
-	public void saveCart(Cart cart) {
-		cartRepo.save(cart);
+	public Cart saveCart(Cart cart) {
+		return cartRepo.save(cart);
 	}
 
 	public Optional<Cart> getCartByID(long cartID) {
 		return cartRepo.findById(cartID);
+	}
+
+	public void deleteCart(long cartID) {
+		cartRepo.deleteById(cartID);		
 	}
 	
 }

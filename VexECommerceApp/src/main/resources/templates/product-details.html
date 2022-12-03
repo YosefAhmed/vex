@@ -140,11 +140,11 @@
         <p class="price py-4">$[[${product.get().getFinalPrice()}]]
           <s class="price">$[[${product.get().getPrice()}]]</s>
         </p>
-        <button class="snipcart-add-item btn btn-main mb-5" data-item-id="apple-watch__25.00"
+        <button id="addToCartButton" class="snipcart-add-item btn btn-main mb-5" data-item-id="apple-watch__25.00"
           data-item-name="Apple Watch" data-item-image="images/showcase/showcase-1.png" data-item-price="25.00"
           data-item-url="products/product-1/" data-item-custom1-name="Choose Color"
           data-item-custom1-options="Black|White|Gray" data-item-custom2-name="Choose Size"
-          data-item-custom2-options="Small|Medium|Large">Add to Cart
+          data-item-custom2-options="Small|Medium|Large" th:onclick="addItemToCart([[${product.get()}]])">Add to Cart
         </button>
         <div class="content">
           <p>[[${product.get().getDescription()}]]</p>

@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -14,32 +15,30 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.ManyToAny;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "CART")
-@NoArgsConstructor
 public class Cart {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@JsonProperty("cartID")
 	private long cartID;
-	@OneToMany(cascade = CascadeType.ALL)
+	@ManyToAny(metaColumn = @Column)
 	private List<Product> listOfProducts;
 	private float totalAmount;
 //	@OneToOne(mappedBy = "cart")
 //	private Order order;
 
-	
-	public Cart(long id, float totalAmount) {
-		super();
-		this.cartID = id;
-		this.totalAmount = totalAmount;
+	public Cart() {
 		this.listOfProducts = new ArrayList<Product>();
 	}
+
 	public long getCartID() {
 		return cartID;
 	}
