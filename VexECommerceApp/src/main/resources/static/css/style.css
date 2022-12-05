@@ -693,3 +693,16 @@ textarea.form-control {
     cursor: pointer
     
 }
+
+.fa-shopping-cart{
+	font-size:46px;
+	color:#f9a743;
+	cursor: pointer
+}
+.fa-shopping-cart:hover{
+	opacity: 0.7
+}
+.fa-shopping-cart:active{
+	color: #e48107;
+    opacity: 1
+}

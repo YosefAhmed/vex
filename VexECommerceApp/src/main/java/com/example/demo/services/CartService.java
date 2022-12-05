@@ -25,5 +25,13 @@ public class CartService {
 	public void deleteCart(long cartID) {
 		cartRepo.deleteById(cartID);		
 	}
+
+	public void addItemToCart(long cartID, long productID) {
+		cartRepo.addItemToCart(cartID, productID);
+	}
+
+	public void removeItemFromCart(long cartID, long productID) {
+		cartRepo.removeItemFromCart(cartID, productID);
+	}
 	
 }

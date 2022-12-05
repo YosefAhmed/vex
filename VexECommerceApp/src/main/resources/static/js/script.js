@@ -65,12 +65,11 @@ $(window).on('load', function () {
 
 })(jQuery);
 
-function removeItemFromCart(product){
+function removeItemFromCart(productID){
 
   $.ajax({
-		url: "/remove_item",
+		url: "/remove_item?productID="+productID,
 		type:'put',
-		data: JSON.stringify(product),
 		headers : {"Content-Type": "application/json"}
 		}).done(function(){
 				window.location.reload();

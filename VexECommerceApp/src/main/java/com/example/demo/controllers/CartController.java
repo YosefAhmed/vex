@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -31,48 +32,54 @@ public class CartController {
 	public  Cart globalCart;
 	
 	@PostMapping("/save_cart")
-	public String saveCart(@RequestBody Cart cart) {
-		cart = cartService.saveCart(cart);
-		return "cart saved successfully";
+	public Cart saveCart(@RequestBody Cart cart) {
+		return cartService.saveCart(cart);
 	}
 	
 	
 	@PutMapping("/add_item")
 	public String addToCart(@RequestBody Product product, Model model) {
 		if(globalCart == null) {
-			globalCart = cartService.saveCart(new Cart());
+			globalCart = saveCart(new Cart());
 		}
 		globalCart.addToCart(product);
-		editCart(globalCart);
+		_addItemToCart(product.getProductID());
 		model.addAttribute("mycart", globalCart);
 		return "redirect:/cart";
 	}
 
-	
-	
+	private void _addItemToCart(long productID) {
+		cartService.addItemToCart(globalCart.getCartID(), productID);
+	}
+
+
 	@PutMapping("/remove_item")
-	public String removeFromCart(@RequestBody Product product, Model model) {
+	public String removeFromCart(@RequestParam long productID, Model model) {
+		Product product = globalCart.getProductByID(productID);
 		if(globalCart != null) {
 			globalCart.removeFromCart(product);
-			if(globalCart.getListOfProducts().isEmpty()) {
-				deleteCart(globalCart.getCartID());
-				globalCart = null;
-			}
-			else {
-				editCart(globalCart);
-			}
+			_removeItemFromCart(product.getProductID());
 		}
 		model.addAttribute("mycart", globalCart);
 		return "redirect:/cart";
 	}
 	
 	
-	@GetMapping("/cart")
-	public ModelAndView getCart(@RequestParam long cartID) {
-		globalCart = cartService.getCartByID(cartID).get();
-		ModelAndView mv = new ModelAndView();
+	private void _removeItemFromCart(long productID) {
+		cartService.removeItemFromCart(globalCart.getCartID(), productID);
+	}
+
+
+	@RequestMapping("/cart")
+	public ModelAndView getCart() {
+		if(globalCart==null) {
+			globalCart = saveCart(new Cart());
+		}
+		else {
+			globalCart = cartService.getCartByID(globalCart.getCartID()).get();			
+		}
+		ModelAndView mv = new ModelAndView("cart");
 		mv.addObject("mycart", globalCart);
-		mv.setViewName("cart");
 		return mv;
 	}
 	

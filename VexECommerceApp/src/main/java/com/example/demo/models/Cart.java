@@ -11,9 +11,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 import org.hibernate.annotations.ManyToAny;
 
@@ -29,7 +32,12 @@ public class Cart {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@JsonProperty("cartID")
 	private long cartID;
-	@ManyToAny(metaColumn = @Column)
+	@ManyToMany
+	@JoinTable(
+			name="Cart_Products", 
+			joinColumns = @JoinColumn(name="cartID"), 
+			inverseJoinColumns = @JoinColumn(name="productID"),
+			uniqueConstraints = @UniqueConstraint(columnNames = {"cartID", "productID"}))
 	private List<Product> listOfProducts;
 	private float totalAmount;
 //	@OneToOne(mappedBy = "cart")
