@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -24,7 +25,7 @@ import com.example.demo.models.Cart;
 import com.example.demo.models.Product;
 import com.example.demo.services.CartService;
 
-@RestController
+@Controller
 public class CartController {
 
 	@Autowired
@@ -70,7 +71,7 @@ public class CartController {
 	}
 
 
-	@RequestMapping("/cart")
+	@GetMapping("/cart")
 	public ModelAndView getCart() {
 		if(globalCart==null) {
 			globalCart = saveCart(new Cart());
@@ -81,6 +82,12 @@ public class CartController {
 		ModelAndView mv = new ModelAndView("cart");
 		mv.addObject("mycart", globalCart);
 		return mv;
+	}
+	
+	@GetMapping("/mycart")
+//	@ResponseBody
+	public String getMyCart() {
+		return "index";
 	}
 	
 //	@PutMapping("/edit_cart")
